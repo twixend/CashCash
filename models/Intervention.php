@@ -37,7 +37,6 @@ class Intervention {
         return $pdo->query("SELECT * FROM technicien ORDER BY nom ASC")->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // NOUVELLE FONCTION : Récupère tous les clients
     public static function getClients() {
         $pdo = DB::connect();
         return $pdo->query("SELECT * FROM client ORDER BY raison_sociale ASC")->fetchAll(PDO::FETCH_ASSOC);
@@ -47,11 +46,9 @@ class Intervention {
         $pdo = DB::connect();
         
         $techId = !empty($data['id_technicien']) ? $data['id_technicien'] : NULL;
-        // On récupère l'ID client du formulaire, sinon par défaut le 1 (sécurité)
         $clientId = !empty($data['id_client']) ? $data['id_client'] : 1;
 
         if (!empty($data['id_intervention'])) { 
-            // UPDATE : On met à jour aussi le client (id_client = ?)
             $sql = "UPDATE intervention SET date_intervention = ?, statut = ?, distance_km = ?, commentaire_global = ?, id_technicien = ?, id_client = ?
                     WHERE id_intervention = ?";
             $stmt = $pdo->prepare($sql);
@@ -61,16 +58,15 @@ class Intervention {
                 $data['distance'], 
                 $data['desc'], 
                 $techId,
-                $clientId, // Nouveau paramètre
+                $clientId,
                 $data['id_intervention']
             ]);
         } else {
-            // INSERT
             $sql = "INSERT INTO intervention (id_client, id_technicien, date_intervention, statut, distance_km, commentaire_global) 
                     VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
             return $stmt->execute([
-                $clientId, // On utilise le client choisi
+                $clientId,
                 $techId, 
                 $data['date'], 
                 $data['statut'], 

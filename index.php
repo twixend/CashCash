@@ -26,7 +26,6 @@ switch ($action) {
         $controller->logout();
         break;
     default:
-        // Redirection intelligente par défaut
         if(isset($_SESSION['user'])) {
             if ($_SESSION['user']['role'] === 'GESTIONNAIRE') {
                 header('Location: index.php?action=affectation');

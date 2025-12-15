@@ -12,7 +12,6 @@
             $textClass = $isRealise ? 'txt-done' : 'txt-todo';
             $textStatus = $isRealise ? 'Réalisé' : 'À faire';
             
-            // Gestion de l'affichage du technicien
             $nomTechnicien = !empty($i['tech_nom']) ? htmlspecialchars($i['tech_prenom'] . ' ' . $i['tech_nom']) : 'Non affecté';
         ?>
 

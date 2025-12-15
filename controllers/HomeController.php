@@ -91,7 +91,7 @@ class HomeController {
                     'distance' => $_POST['distance'],
                     'desc' => $_POST['desc'],
                     'id_technicien' => $_POST['id_technicien'],
-                    'id_client' => $_POST['id_client'], // NOUVEAU : On récupère le client choisi
+                    'id_client' => $_POST['id_client'],
                     'statut' => $_POST['statut'] ?? 'PREVU'
                 ];
                 Intervention::save($data);

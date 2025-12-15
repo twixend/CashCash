@@ -24,7 +24,6 @@
  
 <script>
 
-    // Filtre client JS
 
     document.getElementById('search').addEventListener('keyup', function(e){
 
@@ -39,4 +38,3 @@
     });
 </script>
 </body></html>
- 
